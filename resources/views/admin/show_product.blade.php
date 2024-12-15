@@ -53,8 +53,8 @@
       <div class="main-panel">
         <div class="content-wrapper">
 
-            <div class="content"></div>
-                <h2 class="h2_font">Add Product</h2>
+
+
 
 
             @if (@session()->has('message'))
@@ -64,7 +64,7 @@
             </div>
             @endif
 
-
+            <h2 class="h2_font">Add Product</h2>
             <table class="center">
               <tr class="th_color">
                 <th>Title</th>
@@ -74,7 +74,8 @@
                 <th>Price</th>
                 <th>Discount Price</th>
                 <th>Image</th>
-                {{-- <th>Action</th> --}}
+                <th>Edit</th>
+                <th>Delete</th>
               </tr>
 
               @foreach ($productData as $productData )
@@ -89,8 +90,8 @@
                     <img class="mgi_size" src="/product/{{$productData->image}}">
                 </td>
 
-                {{-- <td><a href="" class="btn btn-primary" >Edit</td>
-                <td><a href="" class="btn btn-danger" >Delete</td> --}}
+                <td><a href="{{url('edit_product',$productData->id)}}" class="btn btn-primary" >Edit</td>
+                <td><a href="{{url('delete_product',$productData->id)}}" class="btn btn-danger" onclick="return confirm('Are you sure delete that product')" >Delete</td>
               </tr>
               @endforeach
 
