@@ -81,7 +81,7 @@
           <div style="padding-left:350px; padding-top:40px"">
             <h1 style="padding-left:80px; padding-bottom:10px">Proceed to Payment</h1>
             <a href="{{url('cash_order')}}" class="btn btn-primary">Cash on Delivery</a>
-            <a href="" class="btn btn-success">Card Payment</a>
+            <a href="{{url('stripe',$totalPrice)}}" class="btn btn-success">Card Payment</a>
           </div>
 
         </div>

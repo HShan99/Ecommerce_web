@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Stripe;
 use App\Models\Cart;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Session;
 
 class HomeController extends Controller
 {
@@ -127,7 +129,30 @@ class HomeController extends Controller
         }
         return redirect()->back()->with('message','Order Proceed successfully ');
 
-
-
     }
+
+    public function stripe($totalPrice){
+        return view('home.stripe',compact('totalPrice'));
+    }
+
+
+
+    public function stripePost(Request $request,$totalPrice){
+        dd($totalPrice);
+        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        Stripe\Charge::create ([
+
+                "amount" => $totalPrice,
+                "currency" => "usd",
+                "source" => $request->stripeToken,
+                "description" => "Thanks for Payment."
+        ]);
+        return back();
+        // return back();->with('message', 'Payment successful!')
+    }
+
+
+
+
+
 }
