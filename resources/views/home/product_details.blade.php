@@ -67,7 +67,19 @@
                     Available Quantity : {{$product_details->quantity}}
                   </h6>
 
-                  <a href="" class="btn btn-primary">Add to Cart</a>
+                  <form action="{{url('add_to_cart',$product_details->id)}}" method="POST" >
+                    @csrf
+                    <div class="row">
+                        <div class="col">
+                            <input type="number" min="1" name="quantity" value="1" width="100px">
+                        </div>
+                        <div class="col">
+                            <input type="submit" class="btn btn-primary" value="Add to Cart">
+                        </div>
+                    </div>
+
+                  </form>
+
 
                </div>
             </div>
