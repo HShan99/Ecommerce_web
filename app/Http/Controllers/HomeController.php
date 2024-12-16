@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
-use App\Models\Product;
 use App\Models\User;
+use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -88,5 +89,45 @@ class HomeController extends Controller
         $cartItem = Cart::find($id);
         $cartItem->delete();
         return redirect()->back();
+    }
+
+    public function cashOrder(){
+        $user = Auth::user();
+        $user_id = $user->id;
+
+        $cart = Cart::where('user_id','=',$user_id)->get();
+
+        foreach($cart as $cart){
+            $order = new Order;
+
+            $order->name = $user->name;
+            $order->email = $user->email;
+            $order->phone = $user->phone;
+            $order->address = $user->address;
+            $order->user_id = $user->id;
+
+            $order->product_title = $cart->product_title;
+            $order->quality = $cart->quantity;
+            $order->price = $cart->price;
+            $order->image = $cart->image;
+            $order->product_id = $cart->product_id;
+
+
+            $order->payment_status = 'cash on delivery';
+            $order->delivery_status = 'processing';
+
+            $order->save();
+
+            $remove_id = $cart->id;
+            $cart_data = Cart::find($remove_id);
+
+            $cart_data->delete();
+
+
+        }
+        return redirect()->back()->with('message','Order Proceed successfully ');
+
+
+
     }
 }
