@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
-use GuzzleHttp\Promise\Create;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use GuzzleHttp\Promise\Create;
 
 class AdminController extends Controller
 {
@@ -95,8 +96,11 @@ class AdminController extends Controller
         $editProductConfirm->save();
 
         return redirect()->back()->with('message','Product Updated Successfully');
+    }
 
-
+    public function order(){
+        $data = Order::all();
+        return view('admin.order',compact('data'));
     }
 
 

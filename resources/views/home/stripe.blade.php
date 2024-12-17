@@ -4,7 +4,7 @@
 
 <head>
 
-    <title></title>
+    <title>Laravel 9 - Stripe Payment Gateway Integration Example - ItSolutionStuff.com</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
 
@@ -20,7 +20,7 @@
 
 
 
-    <h1> Pay Using Your Card</h1>
+    <h1 style="padding-top:120px; padding-bottom:30px; text-align:center"> Payment Using Card</h1>
 
 
 
@@ -40,7 +40,7 @@
 
 
 
-                    {{-- @if (Session::has('success'))
+                    @if (Session::has('success'))
 
                         <div class="text-center alert alert-success">
 
@@ -50,13 +50,6 @@
 
                         </div>
 
-                    @endif --}}
-
-                    @if (@session()->has('message'))
-                        <div class="alert alert-success">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-                            {{@session()->get('message')}}
-                        </div>
                     @endif
 
 
@@ -65,7 +58,7 @@
 
                             role="form"
 
-                            action="{{route('stripe.post',$totalPrice)}}"
+                            action="{{ route('stripe.post') }}"
 
                             method="post"
 
@@ -83,7 +76,7 @@
 
                         <div class='form-row row'>
 
-                            <div class='col-xs-12 form-group'>
+                            <div class='col-xs-12 form-group required'>
 
                                 <label class='control-label'>Name on Card</label> <input
 
@@ -98,13 +91,8 @@
                         <div class='form-row row'>
 
                             <div class='col-xs-12 form-group card required'>
-
-                                <label class='control-label'>Card Number</label> <input
-
-                                    autocomplete='off' class='form-control card-number' size='20'
-
-                                    type='text'>
-
+                                <label class='control-label'>Card Number</label>
+                                <input autocomplete='off' class='form-control card-number' size='20' type='text'>
                             </div>
 
                         </div>
@@ -165,7 +153,8 @@
 
                             <div class="col-xs-12">
 
-                                <button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now</button>
+                                <button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now </button>
+
 
                             </div>
 
@@ -186,7 +175,6 @@
 
 
 </div>
-
 
 
 

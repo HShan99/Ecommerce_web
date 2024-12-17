@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\StripePaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +49,17 @@ Route::get('/edit_product/{id}',[AdminController::class, 'edit_product']);
 
 Route::post('/edit_product_confirm/{id}',[AdminController::class, 'edit_product_confirm']);
 
+Route::get('/view_order',[AdminController::class, 'order']);
+
+
+
+
+
+
+
+
+
+
 Route::get('/product_details/{id}',[HomeController::class, 'product_details']);
 
 Route::post('/add_to_cart/{id}',[HomeController::class, 'addToCart']);
@@ -60,4 +72,7 @@ Route::get('/cash_order',[HomeController::class, 'cashOrder']);
 
 Route::get('/stripe/{totalPrice}',[HomeController::class, 'stripe']);
 
-Route::post('stripe/{totalPrice}', [HomeController::class, 'stripePost'])->name('stripe.post');
+Route::post('stripe', [HomeController::class, 'stripePost'])->name('stripe.post1');
+
+Route::get('stripe', [AdminController::class, 'stripe'])->name('stripe');
+Route::post('stripe-post', [AdminController::class, 'stripePost'])->name('stripe.post');

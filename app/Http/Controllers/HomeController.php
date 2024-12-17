@@ -9,7 +9,7 @@ use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Session;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -137,18 +137,17 @@ class HomeController extends Controller
 
 
 
-    public function stripePost(Request $request,$totalPrice){
-        dd($totalPrice);
+    public function stripePost(Request $request){
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         Stripe\Charge::create ([
-
-                "amount" => $totalPrice,
+                "amount" => 100 * 100,
                 "currency" => "usd",
                 "source" => $request->stripeToken,
-                "description" => "Thanks for Payment."
+                "description" => "Test payment"
         ]);
+        Session::flash('success', 'Payment successful!');
         return back();
-        // return back();->with('message', 'Payment successful!')
+
     }
 
 
