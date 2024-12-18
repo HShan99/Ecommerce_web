@@ -106,7 +106,8 @@ class AdminController extends Controller
     public function statusChange($id){
         $data = Order::find($id);
 
-        $data->delivery_status = "delivered";
+        $data->delivery_status = "Delivered";
+        $data->payment_status = "Paid";
 
         $data->save();
 

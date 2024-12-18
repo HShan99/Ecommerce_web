@@ -15,12 +15,18 @@
             padding-bottom: 40px;
             text-align: center;
         }
-        .center{
+        /* .center{
           margin:auto;
           width: auto;
           text-align: center;
           margin-top: 30px;
           border: 3px solid;
+        } */
+        .table{
+            width: auto;
+            text-align: center;
+            margin-top: 30px;
+
         }
         .content{
             text-align: center;
@@ -64,8 +70,9 @@
             </div>
             @endif
 
-            <h2 class="h2_font">Add Product</h2>
-            <table class="center">
+            <h2 class="h2_font">Show Products</h2>
+
+            {{-- <table class="center">
               <tr class="th_color">
                 <th>Title</th>
                 <th>Description</th>
@@ -95,18 +102,56 @@
               </tr>
               @endforeach
 
-            </table>
+            </table> --}}
+            <div class="center">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Discount Price</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        @foreach ($productData as $productData )
+                    <tr>
+                        <td>{{$productData->title}}</td>
+                        <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 450px;">
+                            {{$productData->description}}
+                        </td>
+                        <td>{{$productData->category}}</td>
+                        <td>{{$productData->quantity}}</td>
+                        <td>{{$productData->price}}</td>
+                        <td>{{$productData->discount_price}}</td>
+                        <td>
+                            <img class="mgi_size" src="/product/{{$productData->image}}">
+                        </td>
+
+                        <td><a href="{{url('edit_product',$productData->id)}}" class="btn btn-primary" >Edit</td>
+                        <td><a href="{{url('delete_product',$productData->id)}}" class="btn btn-danger" onclick="return confirm('Are you sure delete that product')" >Delete</td>
+                    </tr>
+                  @endforeach
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+
+
+
+
         </div>
-        </div>
-      </div>
+
+
 
           <!-- partial:partials/_footer.html -->
-          <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-              <span class="text-center text-muted d-block text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
-              <span class="float-none mt-1 text-center float-sm-right d-block mt-sm-0"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin templates</a> from Bootstrapdash.com</span>
-            </div>
-          </footer>
+
           <!-- partial -->
         </div>
         <!-- main-panel ends -->

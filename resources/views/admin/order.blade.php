@@ -58,17 +58,17 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Address</th>
-                    <th scope="col">Phone</th>
-                    <th scope="col">Product Title</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Payment Status</th>
-                    <th scope="col">Delivery Status</th>
-                    <th scope="col">Image</th>
-                    <th scope="col">Deliver</th>
+                    <th scope="col" style="color: white">Name</th>
+                    <th scope="col" style="color: white">Email</th>
+                    <th scope="col" style="color: white">Address</th>
+                    <th scope="col" style="color: white">Phone</th>
+                    <th scope="col" style="color: white">Product Title</th>
+                    <th scope="col" style="color: white">Quantity</th>
+                    <th scope="col" style="color: white">Price</th>
+                    <th scope="col" style="color: white">Payment Status</th>
+                    <th scope="col" style="color: white">Delivery Status</th>
+                    <th scope="col" style="color: white">Image</th>
+                    <th scope="col" style="color: white">Deliver</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -87,7 +87,14 @@
                     <td>
                       <img class="mgi_size" src="/product/{{$data->image}}">
                     </td>
-                    <td><a href="{{url('status_change',$data->id)}}" class="btn-success" style="padding:4px; border-radius:5px">Delivered</td>
+                    <td>
+                        @if($data->delivery_status == 'processing' )
+                            <a href="{{url('status_change',$data->id)}}" class="btn-success" style="padding:4px; border-radius:5px" onclick="return confirm('Are You sure to Deliver That ?')">To Deliver
+
+                        @else
+                            <a href="" class="btn btn-danger" style="padding:4px; border-radius:5px" >Delivered
+                        @endif
+                    </td>
 
                 </tr>
                 @endforeach

@@ -18,6 +18,7 @@
         .text_color{
             color: black;
             padding-bottom: 20px;
+            width: 700px;
         }
         label{
             display: inline-block;
@@ -26,6 +27,19 @@
         .div_design{
             padding-bottom: 15px;
         }
+
+        input[type="text"]{
+            width: 700px;
+        }
+        input[type="number"]{
+            width: 700px;
+        }
+        input[type="submit"]{
+            width: 200px;
+            height: 50px;
+            font-size: 20px;
+        }
+
 
     </style>
   </head>
@@ -51,7 +65,7 @@
             @endif
 
             <div class="div_center">
-                <h2 class="h2_font">Add Category</h2>
+                <h2 class="h2_font">Edit Product</h2>
 
             <form action="{{url('/edit_product_confirm',$editProduct->id)}}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -113,17 +127,12 @@
         </div>
 
 
-        </div>
+
     </div>
 
       <!-- content-wrapper ends -->
           <!-- partial:partials/_footer.html -->
-          <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-              <span class="text-center text-muted d-block text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
-              <span class="float-none mt-1 text-center float-sm-right d-block mt-sm-0"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin templates</a> from Bootstrapdash.com</span>
-            </div>
-          </footer>
+
           <!-- partial -->
         </div>
         <!-- main-panel ends -->

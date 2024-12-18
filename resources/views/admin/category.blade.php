@@ -14,17 +14,26 @@
             font-size: 30px;
             padding-bottom: 40px;
         }
+        .form-group.form-inline{
+            padding-left: 370px;
+            display: flex;
+            align-items: center;
+        }
         .input_color{
             color: black;
         }
-        .center{
+        .table{
           margin:auto;
-          width: 70%;
+          width: 80%;
           text-align: center;
           margin-top: 30px;
-          border: 3px solid;
 
         }
+        .form-inline input[type="text"] {
+        margin-right: 10px;
+        width: 400px;
+        }
+
 
     </style>
   </head>
@@ -54,38 +63,41 @@
 
                 <form action="{{url('/add_category')}}" method="POST">
                     @csrf
+                    <div class="form-group form-inline">
 
-                    <input type="text" class="input_color" name="category" placeholder="Write Category Name">
+                      <input type="text" class="form-control" name="category" placeholder="Write Category Name">
+                      <input type="submit" class="btn btn-primary" name="submit" value="Add Category">
 
-                    <input type="submit" class="btn btn-primary" name="submit" value="Add Category">
+                    </div>
+                    <div class="form-group"></div>
                 </form>
+
             </div>
 
-            <table class="center">
-              <tr>
-                <td>Category Name</td>
-                <td>Action</td>
-              </tr>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col" style="color: white">Category Name</th>
+                    <th scope="col" style="color: white">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
 
-              @foreach ($data as $data )
-              <tr>
-                <td>{{$data->category_name}}</td>
-                <td><a href="{{url('delete_category',$data->id)}}" class="btn btn-danger" onclick="return confirm('Are you sure Delete That??')">Delete</td>
-              </tr>
-              @endforeach
+                @foreach ($data as $data )
+                  <tr>
+                    <td scope="row">{{$data->category_name}}</td>
+                    <td><a href="{{url('delete_category',$data->id)}}" class="btn btn-danger" onclick="return confirm('Are you sure Delete That??')">Delete</td>
+                  </tr>
+                @endforeach
 
-            </table>
+                </tbody>
+              </table>
 
-        </div>
+
       </div>
 
           <!-- partial:partials/_footer.html -->
-          <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-              <span class="text-center text-muted d-block text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
-              <span class="float-none mt-1 text-center float-sm-right d-block mt-sm-0"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin templates</a> from Bootstrapdash.com</span>
-            </div>
-          </footer>
+
           <!-- partial -->
         </div>
         <!-- main-panel ends -->
