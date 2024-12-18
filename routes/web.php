@@ -53,6 +53,8 @@ Route::get('/view_order',[AdminController::class, 'order']);
 
 Route::get('/status_change/{id}',[AdminController::class, 'statusChange']);
 
+Route::get('/print_pdf/{id}',[AdminController::class, 'printPdf']);
+
 
 
 

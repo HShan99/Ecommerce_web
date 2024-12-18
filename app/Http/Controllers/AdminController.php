@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Category;
+use PDF;
 use Illuminate\Http\Request;
 use GuzzleHttp\Promise\Create;
 
@@ -112,6 +113,14 @@ class AdminController extends Controller
         $data->save();
 
         return redirect()->back();
+    }
+
+    public function printPdf($id){
+        $order = Order::find($id);
+        $pdf = PDF::loadView('admin.pdf',compact('order'));
+
+        return $pdf->download('order_details.pdf');
+
     }
 
 
