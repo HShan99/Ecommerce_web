@@ -51,6 +51,8 @@ Route::post('/edit_product_confirm/{id}',[AdminController::class, 'edit_product_
 
 Route::get('/view_order',[AdminController::class, 'order']);
 
+Route::get('/status_change/{id}',[AdminController::class, 'statusChange']);
+
 
 
 

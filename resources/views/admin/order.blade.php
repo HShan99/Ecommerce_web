@@ -68,6 +68,7 @@
                     <th scope="col">Payment Status</th>
                     <th scope="col">Delivery Status</th>
                     <th scope="col">Image</th>
+                    <th scope="col">Deliver</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -83,10 +84,11 @@
                     <td>{{$data->price}}</td>
                     <td>{{$data->payment_status}}</td>
                     <td>{{$data->delivery_status}}</td>
-
                     <td>
                       <img class="mgi_size" src="/product/{{$data->image}}">
                     </td>
+                    <td><a href="{{url('status_change',$data->id)}}" class="btn-success" style="padding:4px; border-radius:5px">Delivered</td>
+
                 </tr>
                 @endforeach
 
