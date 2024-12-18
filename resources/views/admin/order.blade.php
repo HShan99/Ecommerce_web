@@ -24,6 +24,17 @@
           margin-top: 30px;
           border: 3px solid;
         }
+        .form-inline input[type="text"] {
+          margin-right: 10px;
+          width: 400px;
+
+        }
+        #table{
+            padding-top: 20px;
+        }
+        .search{
+            padding-left: 150px;
+        }
 
 
     </style>
@@ -53,8 +64,24 @@
                 <h2 class="h2_font">All Order</h2>
             </div>
 
+            <div class="row height d-flex justify-content-center align-items-center">
 
+                <div class="col-md-8 form-inline">
 
+                  <div class="search">
+                    <form action="{{url('search')}}" method="GET">
+                        <i class="fa fa-search"></i>
+                        <input type="text" class="form-control" name="search" placeholder="Have a question? Ask Now">
+                        <button class="btn btn-primary">Search</button>
+                    </form>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div id="table">
               <table class="table">
                 <thead>
                   <tr>
@@ -104,6 +131,7 @@
 
                 </tbody>
               </table>
+            </div>
 
     </div>
 
