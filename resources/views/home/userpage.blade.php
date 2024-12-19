@@ -20,6 +20,27 @@
       <link href="home/css/style.css" rel="stylesheet" />
       <!-- responsive style -->
       <link href="home/css/responsive.css" rel="stylesheet" />
+
+      <style>
+        .form-group{
+            text-align: center;
+            padding-left: 500px;
+        }
+        .form-control{
+            width: 600px;
+
+        }
+        .lable{
+            padding-right: 400px;
+        }
+        #commentButton{
+            margin-right: 400px;
+        }
+        .allComment{
+            padding-left: 190px;
+            padding-bottom: 10px;
+        }
+      </style>
    </head>
    <body>
       <div class="hero_area">
@@ -45,6 +66,46 @@
       @include('home.product')
       <!-- end product section -->
 
+
+
+    <div class="form-group">
+        <form action="">
+          <label class="lable">Comments</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1"></textarea>
+          <a href="" class="btn btn-primary" id="commentButton">Comment</a>
+      </form>
+    </div>
+
+    <div>
+      <h2 style="padding-bottom: 20px; padding-left:190px">All Comments</h2>
+
+      <div class="allComment">
+        <b>Shan</b>
+        <p>This is my first comment</p>
+        <a href="javascript::void(0);">Reply</a>
+      </div>
+
+      <div class="allComment">
+        <b>Shan</b>
+        <p>This is my first comment</p>
+        <a href="javascript::void(0);">Reply</a>
+      </div>
+
+      <div class="allComment">
+        <b>Shan</b>
+        <p>This is my first comment</p>
+        <a href="javascript::void(0);">Reply</a>
+      </div>
+
+      <div style="display:none">
+        <textarea style="height: 100px; width:500px;margin-left:190px" placeholder="Write something Here..."></textarea>
+        <br>
+        <a href="" class="btn btn-primary" style=" margin-left: 190px; margin-bottom:10px;">Reply</a>
+      </div>
+    </div>
+
+
+
       <!-- subscribe section -->
       @include('home.subscription')
       <!-- end subscribe section -->
@@ -56,6 +117,7 @@
       <!-- footer start -->
       @include('home.footer')
       <!-- footer end -->
+
 
 
       <!-- jQery -->
