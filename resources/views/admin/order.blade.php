@@ -70,8 +70,9 @@
 
                   <div class="search">
                     <form action="{{url('search')}}" method="GET">
+                        @csrf
                         <i class="fa fa-search"></i>
-                        <input type="text" class="form-control" name="search" placeholder="Have a question? Ask Now">
+                        <input type="text" class="form-control" name="search" placeholder="Search Here">
                         <button class="btn btn-primary">Search</button>
                     </form>
 
@@ -101,7 +102,7 @@
                 </thead>
                 <tbody>
 
-                @foreach ($data as $data )
+                @forelse ($data as $data )
                 <tr>
                     <th scope="row">{{$data->name}}</th>
                     <td>{{$data->email}}</td>
@@ -127,7 +128,18 @@
                     <td><a href="{{url('print_pdf',$data->id)}}" class="btn btn-secondary" style="padding:4px; border-radius:5px" >Print PDF</td>
 
                 </tr>
-                @endforeach
+                @empty
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="font-size: 30px">Data Not Found</td>
+                    </tr>
+
+                @endforelse
 
                 </tbody>
               </table>

@@ -55,7 +55,7 @@ Route::get('/status_change/{id}',[AdminController::class, 'statusChange']);
 
 Route::get('/print_pdf/{id}',[AdminController::class, 'printPdf']);
 
-Route::get('/search',[AdminController::class, 'search']);
+Route::get('/search',[AdminController::class, 'searchData']);
 
 
 
