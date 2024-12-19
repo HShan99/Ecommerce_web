@@ -6,6 +6,15 @@
              Our <span>products</span>
           </h2>
        </div>
+
+       <div class="search form-inline" style="margin-left: 300px">
+        <form action="{{url('product_search')}}" method="GET">
+            @csrf
+            <input style="margin-right: 10px; width: 500px; border-radius:10px"" type="text" class="form-control " name="search" placeholder="Search Product Here">
+            <button class="btn btn-danger" style="margin-bottom:20px">Search</button>
+        </form>
+      </div>
+
        <div class="row">
         @foreach ($product as $products)
           <div class="col-sm-6 col-md-4 col-lg-4">

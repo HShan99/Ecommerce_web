@@ -234,6 +234,15 @@ class HomeController extends Controller
         }
     }
 
+    public function searchProduct(Request $request){
+        $productSearch = $request->search;
+        $commentData = Comment::orderby('id','desc')->get();
+        $replyData = Reply::all();
+
+        $product = Product::where('title','LIKE',"%$productSearch%")->orWhere('category','LIKE',"%$productSearch%")->paginate(10);
+        return view('home.userpage',compact('product','commentData','replyData'));
+    }
+
 
 
 

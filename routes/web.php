@@ -90,3 +90,5 @@ Route::get('/cancel_order/{id}', [HomeController::class, 'cancelOrder']);
 Route:: post('/add_comment', [HomeController::class, 'comment']);
 
 Route:: post('/add_reply', [HomeController::class, 'reply']);
+
+Route:: get('/product_search', [HomeController::class, 'searchProduct']);
