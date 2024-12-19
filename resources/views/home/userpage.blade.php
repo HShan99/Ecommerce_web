@@ -27,11 +27,14 @@
             padding-left: 500px;
         }
         .form-control{
-            width: 600px;
+            width: 610px;
 
         }
         .lable{
             padding-right: 400px;
+            padding-top: 50px;
+            padding-bottom: 20px;
+            font-size: 30px;
         }
         #commentButton{
             margin-right: 400px;
@@ -40,6 +43,7 @@
             padding-left: 190px;
             padding-bottom: 10px;
         }
+
       </style>
    </head>
    <body>
@@ -69,38 +73,49 @@
 
 
     <div class="form-group">
-        <form action="">
-          <label class="lable">Comments</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1"></textarea>
-          <a href="" class="btn btn-primary" id="commentButton">Comment</a>
+        <form action="{{url('add_comment')}}" method="POST">
+            @csrf
+          <h2 class="lable">Comments</h2>
+          <textarea class="form-control"  name="comment"></textarea>
+          <input type="submit" class="btn btn-primary" id="commentButton" value="Comment">
       </form>
     </div>
 
     <div>
-      <h2 style="padding-bottom: 20px; padding-left:190px">All Comments</h2>
+      <h2 style="padding-bottom: 20px; padding-left:190px; font-size:25px">All Comments</h2>
+
+      @foreach ($commentData as $commentData )
 
       <div class="allComment">
-        <b>Shan</b>
-        <p>This is my first comment</p>
-        <a href="javascript::void(0);">Reply</a>
+        <b>{{$commentData->name}}</b>
+        <p>{{$commentData->comment}}</p>
+        <a style="color:blue" href="javascript::void(0);" onclick="reply(this)" data-commentid="{{$commentData->id}}">Reply</a>
+
+        @foreach ($replyData as $replyDatas)
+            @if($replyDatas->comment_id == $commentData->id)
+                <div style="padding-left:3%; padding-top:10px; padding-bottom:10px" >
+                    <b>{{$replyDatas->name}}</b>
+                    <p>{{$replyDatas->reply}}</p>
+                    <a style="color:blue" href="javascript::void(0);" onclick="reply(this)" data-commentid="{{$commentData->id}}">Reply</a>
+                </div>
+            @endif
+
+        @endforeach
+
       </div>
 
-      <div class="allComment">
-        <b>Shan</b>
-        <p>This is my first comment</p>
-        <a href="javascript::void(0);">Reply</a>
-      </div>
+      @endforeach
 
-      <div class="allComment">
-        <b>Shan</b>
-        <p>This is my first comment</p>
-        <a href="javascript::void(0);">Reply</a>
-      </div>
 
-      <div style="display:none">
-        <textarea style="height: 100px; width:500px;margin-left:190px" placeholder="Write something Here..."></textarea>
-        <br>
-        <a href="" class="btn btn-primary" style=" margin-left: 190px; margin-bottom:10px;">Reply</a>
+      <div style="display:none" class="replyDiv">
+        <form action="{{url('add_reply')}}" method="POST">
+            @csrf
+            <input type="text" id="commentId" name="commentId" hidden="">
+            <textarea style="height: 100px; width:500px;margin-left:190px" name="reply" placeholder="Write something Here..."></textarea>
+            <br>
+            <button type="submit" class="btn btn-primary" style=" margin-left: 190px; margin-bottom:10px;">Reply</button>
+            <a href="javascript::void(0);" class="btn btn-danger" style=" margin-left: 7px; margin-bottom:10px;" onclick="reply_close(this)">Close</a>
+        </form>
       </div>
     </div>
 
@@ -118,6 +133,28 @@
       @include('home.footer')
       <!-- footer end -->
 
+      <script type="text/javascript">
+          function reply(caller){
+            document.getElementById('commentId').value=$(caller).attr('data-commentid');
+            $('.replyDiv').insertAfter($(caller));
+            $('.replyDiv').show();
+          }
+
+          function reply_close(caller){
+            $('.replyDiv').hide();
+          }
+      </script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function(event) {
+                var scrollpos = localStorage.getItem('scrollpos');
+                if (scrollpos) window.scrollTo(0, scrollpos);
+            });
+
+            window.onbeforeunload = function(e) {
+                localStorage.setItem('scrollpos', window.scrollY);
+            };
+        </script>
 
 
       <!-- jQery -->

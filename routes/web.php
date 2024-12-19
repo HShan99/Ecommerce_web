@@ -86,3 +86,7 @@ Route::post('stripe-post', [AdminController::class, 'stripePost'])->name('stripe
 Route::get('/show_order', [HomeController::class, 'showOrder']);
 
 Route::get('/cancel_order/{id}', [HomeController::class, 'cancelOrder']);
+
+Route:: post('/add_comment', [HomeController::class, 'comment']);
+
+Route:: post('/add_reply', [HomeController::class, 'reply']);

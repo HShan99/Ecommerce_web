@@ -6,6 +6,8 @@ use Stripe;
 use App\Models\Cart;
 use App\Models\User;
 use App\Models\Order;
+use App\Models\Reply;
+use App\Models\Comment;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,7 +37,9 @@ class HomeController extends Controller
         }
         else{
             $product = Product::paginate(3);
-            return view('home.userpage',compact('product'));
+            $commentData = Comment::orderby('id','desc')->get();
+            $replyData = Reply::all();
+            return view('home.userpage',compact('product','commentData','replyData'));
         }
         $product = Product::paginate(3);
         return view('home.userpage',compact('product'));
@@ -43,7 +47,9 @@ class HomeController extends Controller
 
     public function index(){
         $product = Product::paginate(3);
-        return view('home.userpage',compact('product'));
+        $commentData = Comment::orderby('id','desc')->get();
+        $replyData = Reply::all();
+        return view('home.userpage',compact('product','commentData','replyData'));
     }
 
     public function product_details($id){
@@ -185,9 +191,47 @@ class HomeController extends Controller
         else{
             return redirect()->back()->with('message','Can not Order Cancel.Order was Delivered');
         }
+    }
+
+    public function comment(Request $request){
+        if(Auth::id()){
+            $userId = Auth::user()->id;
+            $userName = Auth::user()->name;
+
+            $commentData = new Comment();
+            $commentData->name = $userName;
+            $commentData->user_id = $userId;
+            $commentData->comment = $request->comment;
+            $commentData->save();
+
+            return redirect()->back();
+
+        }
+        else{
+            return view('auth.login');
+        }
+    }
+
+    public function reply(Request $request){
+        if(Auth::id()){
+            $replyData = new Reply();
+            $replyData->name = Auth::user()->name;
+            $replyData->user_id = Auth::user()->id;
+
+            $commentData = Comment::all();
+            $replyData->comment_id = $request->commentId;
+            $replyData->reply = $request->reply;
+
+            $replyData->save();
+
+            return redirect()->back();
 
 
 
+        }
+        else{
+            return view('auth.login');
+        }
     }
 
 

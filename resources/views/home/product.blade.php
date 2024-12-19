@@ -73,11 +73,6 @@
 
           </div>
        </div>
-       <div class="btn-box">
-          <a href="">
-          View All products
-          </a>
-       </div>
     </div>
  </section>
  <!-- end product section -->
