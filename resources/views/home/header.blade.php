@@ -34,6 +34,11 @@
                         <a class="nav-link" href="{{url('show_cart')}}">Cart</a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url('show_order')}}">Order</a>
+                    </li>
+
+
                     <form class="form-inline">
                         <button class="my-2 btn my-sm-0 nav_search-btn" type="submit">
                             <i class="fa fa-search" aria-hidden="true"></i>

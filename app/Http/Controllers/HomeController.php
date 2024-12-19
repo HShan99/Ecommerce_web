@@ -142,7 +142,7 @@ class HomeController extends Controller
 
 
         }
-        return redirect()->back()->with('message','Order Proceed successfully ');
+        return redirect()->back()->with('message','We have your Order.We will contact you soon.... ');
 
     }
 
@@ -162,6 +162,31 @@ class HomeController extends Controller
         ]);
         Session::flash('success', 'Payment successful!');
         return back();
+
+    }
+
+    public function showOrder(){
+        if(Auth::id()){
+            $userId = Auth::user()->id;
+            $showSpecificOrder = Order::where('user_id','=',"$userId")->get();
+            return view('home.order',compact('showSpecificOrder'));
+        }
+        else{
+            return view('auth.login');
+        }
+    }
+
+    public function cancelOrder($id){
+        $cancel_order = Order::find($id);
+        if($cancel_order->delivery_status == 'processing'){
+            $cancel_order->delete();
+            return redirect()->back()->with('message','Order Cancel Successfully');
+        }
+        else{
+            return redirect()->back()->with('message','Can not Order Cancel.Order was Delivered');
+        }
+
+
 
     }
 
