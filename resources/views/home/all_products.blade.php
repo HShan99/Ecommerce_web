@@ -53,21 +53,9 @@
         @include('home.header')
         <!-- end header section -->
 
-        <!-- slider section -->
-        @include('home.slider')
-        <!-- end slider section -->
-     </div>
-
-      <!-- why section -->
-      @include('home.why')
-      <!-- end why section -->
-
-      <!-- arrival section -->
-      @include('home.arrival')
-      <!-- end arrival section -->
 
       <!-- product section -->
-      @include('home.product')
+      @include('home.product_view')
       <!-- end product section -->
 
 
@@ -120,18 +108,16 @@
     </div>
 
 
+    <div class="cpy_">
+        <p class="mx-auto">© 2021 All Rights Reserved By <a href="https://html.design/">Free Html Templates</a><br>
 
-      <!-- subscribe section -->
-      @include('home.subscription')
-      <!-- end subscribe section -->
+           Distributed By <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
 
-      <!-- client section -->
-      @include('home.client')
-      <!-- end client section -->
+        </p>
+     </div>
 
-      <!-- footer start -->
-      @include('home.footer')
-      <!-- footer end -->
+
+
 
       <script type="text/javascript">
           function reply(caller){

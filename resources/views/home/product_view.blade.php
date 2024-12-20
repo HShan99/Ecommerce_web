@@ -2,9 +2,7 @@
 <section class="product_section layout_padding">
     <div class="container">
        <div class="heading_container heading_center">
-          <h2>
-             Our <span>products</span>
-          </h2>
+
        </div>
 
        @if (@session()->has('message'))
@@ -15,7 +13,7 @@
        @endif
 
        <div class="search form-inline" style="margin-left: 300px">
-        <form action="{{url('product_search')}}" method="GET">
+        <form action="{{url('search_product')}}" method="GET">
             @csrf
             <input style="margin-right: 10px; width: 500px; border-radius:10px"" type="text" class="form-control " name="search" placeholder="Search Product Here">
             <button class="btn btn-danger" style="margin-bottom:20px">Search</button>

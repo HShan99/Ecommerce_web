@@ -8,12 +8,19 @@ use App\Models\Category;
 use PDF;
 use Illuminate\Http\Request;
 use GuzzleHttp\Promise\Create;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
     public function view_category(){
-        $data = Category::all();
-        return view('admin.category',compact('data'));
+        if(Auth::id()){
+            $data = Category::all();
+            return view('admin.category',compact('data'));
+        }
+        else{
+            return view('auth.login');
+        }
+        
     }
 
     public function add_category(Request $request){

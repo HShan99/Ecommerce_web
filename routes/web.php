@@ -24,9 +24,7 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
 });
 
 Route::get('redirect',[HomeController::class, 'redirect']);
@@ -92,3 +90,7 @@ Route:: post('/add_comment', [HomeController::class, 'comment']);
 Route:: post('/add_reply', [HomeController::class, 'reply']);
 
 Route:: get('/product_search', [HomeController::class, 'searchProduct']);
+
+Route:: get('/products', [HomeController::class, 'allProduct']);
+
+Route:: get('/search_product', [HomeController::class, 'productSearch']);
