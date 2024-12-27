@@ -12,6 +12,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class HomeController extends Controller
 {
@@ -78,7 +79,8 @@ class HomeController extends Controller
                 }
 
                 $cart->save();
-                return redirect()->back()->with('message','Product Added to Cart');
+                Alert::success('Product Added to Cart');
+                return redirect()->back();
 
             }
             else{
@@ -107,8 +109,8 @@ class HomeController extends Controller
                 $cart->save();
 
 
-
-                return redirect()->back()->with('message','Product Added to Cart');
+                Alert::success('Product Added to Cart');
+                return redirect()->back();
             }
 
 
@@ -171,7 +173,8 @@ class HomeController extends Controller
 
 
         }
-        return redirect()->back()->with('message','We have your Order.We will contact you soon.... ');
+        Alert::success('We have your Order','We will contact you soon.... ');
+        return redirect()->back();
 
     }
 
@@ -209,10 +212,12 @@ class HomeController extends Controller
         $cancel_order = Order::find($id);
         if($cancel_order->delivery_status == 'processing'){
             $cancel_order->delete();
-            return redirect()->back()->with('message','Order Cancel Successfully');
+            Alert::success('Order Cancel Successfully','Your order will be cancel');
+            return redirect()->back();
         }
         else{
-            return redirect()->back()->with('message','Can not Order Cancel.Order was Delivered');
+            Alert::success('Can not order cancel', 'Order was delivered');
+            return redirect()->back();
         }
     }
 

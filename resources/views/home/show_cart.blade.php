@@ -20,8 +20,11 @@
       <link href="{{asset('home/css/style.css')}}" rel="stylesheet" />
       <!-- responsive style -->
       <link href="{{asset('home/css/responsive.css')}}" rel="stylesheet" />
-   </head>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    </head>
    <body>
+
+    @include('sweetalert::alert')
 
     <div class="hero_area">
 
@@ -60,7 +63,7 @@
                     <td>{{$cart->quantity}}</td>
                     <td>{{$cart->price}}</td>
                     <td><img src="/product/{{$cart->image}}" alt="image" width="80px" height="80px"></td>
-                    <td><a href="{{url('remove_cart_item',$cart->id)}}" onclick="return confirm('Are you sure to Delete??')" class="btn btn-danger">Remove Product</a></td>
+                    <td><a href="{{url('remove_cart_item',$cart->id)}}" onclick="confirmation(event)" class="btn btn-danger">Remove Product</a></td>
                   </tr>
                 <?php $totalPrice += $cart->price ?>
                 @endforeach
@@ -93,6 +96,28 @@
 
         </p>
      </div>
+
+     <script>
+        function confirmation(event){
+            event.preventDefault();
+            var urlToRedirect = event.currentTarget.getAttribute('href');
+            console.log(urlToRedirect);
+            swal({
+                title: "Are you sure to remove this product",
+                text: "You will not be able to revers this!",
+                icon: "warning",
+                button: true,
+                dangerModel: true,
+            })
+            .then((willCancel)=>{
+                if(willCancel){
+                    window.location.href = urlToRedirect;
+                }
+            });
+
+        }
+     </script>
+
 
 
       <!-- jQery -->

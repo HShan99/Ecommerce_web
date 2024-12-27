@@ -44,8 +44,10 @@
         }
 
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   </head>
   <body>
+    @include('sweetalert::alert')
     <div class="container-scroller">
 
       <!-- partial:partials/_sidebar.html -->
@@ -135,7 +137,7 @@
                         </td>
 
                         <td><a href="{{url('edit_product',$productData->id)}}" class="btn btn-primary" >Edit</td>
-                        <td><a href="{{url('delete_product',$productData->id)}}" class="btn btn-danger" onclick="return confirm('Are you sure delete that product')" >Delete</td>
+                        <td><a href="{{url('delete_product',$productData->id)}}" class="btn btn-danger" onclick="confirmation(event)" >Delete</td>
                     </tr>
                   @endforeach
                       </tr>
@@ -147,6 +149,28 @@
 
 
         </div>
+
+        <script>
+            function confirmation(event){
+                event.preventDefault();
+                var urlToRedirect = event.currentTarget.getAttribute('href');
+                console.log(urlToRedirect);
+                swal({
+                    title: "Are you sure to delete this product",
+                    text: "You will not be able to revers this!",
+                    icon: "warning",
+                    button: true,
+                    dangerModel: true,
+                })
+                .then((willCancel)=>{
+                    if(willCancel){
+                        window.location.href = urlToRedirect;
+                    }
+                });
+
+            }
+         </script>
+
 
 
 

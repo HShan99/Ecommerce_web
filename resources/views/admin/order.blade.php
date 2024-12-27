@@ -38,9 +38,10 @@
 
 
     </style>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   </head>
   <body>
-
+    @include('sweetalert::alert')
     <div class="container-scroller">
       <!-- partial:partials/_sidebar.html -->
       @include('admin.sidebar')
@@ -118,7 +119,7 @@
                     </td>
                     <td>
                         @if($data->delivery_status == 'processing' )
-                            <a href="{{url('status_change',$data->id)}}" class="btn-success" style="padding:4px; border-radius:5px" onclick="return confirm('Are You sure to Deliver That ?')">To Deliver
+                            <a href="{{url('status_change',$data->id)}}" class="btn-success" style="padding:4px; border-radius:5px" onclick="confirmation(event)">To Deliver
 
                         @else
                             <a href="" class="btn btn-danger" style="padding:4px; border-radius:5px" >Delivered
@@ -146,6 +147,28 @@
             </div>
 
     </div>
+
+    <script>
+        function confirmation(event){
+            event.preventDefault();
+            var urlToRedirect = event.currentTarget.getAttribute('href');
+            console.log(urlToRedirect);
+            swal({
+                title: "Are you sure change that status?",
+                text: "You will not be able to revers this!",
+                icon: "warning",
+                button: true,
+                dangerModel: true,
+            })
+            .then((willCancel)=>{
+                if(willCancel){
+                    window.location.href = urlToRedirect;
+                }
+            });
+
+        }
+     </script>
+
 
           <!-- partial:partials/_footer.html -->
           {{-- <footer class="footer">

@@ -20,7 +20,7 @@
      <link href="{{asset('home/css/style.css')}}" rel="stylesheet" />
      <!-- responsive style -->
      <link href="{{asset('home/css/responsive.css')}}" rel="stylesheet" />
-
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
       <style>
         .table-content{
             padding-top: 50px;
@@ -30,6 +30,7 @@
       </style>
    </head>
    <body>
+    @include('sweetalert::alert')
       <div class="hero_area">
 
         <!-- header section strats -->
@@ -68,7 +69,7 @@
                             <td>{{$showSpecificOrder->delivery_status}}</td>
                             <td><img src="/product/{{$showSpecificOrder->image}}" width="40" height="40" alt="" style="border-radius: 50%; object-fit: cover;"></td>
                             <td><a href="{{url('cancel_order',$showSpecificOrder->id)}}" class="btn btn-danger"
-                                onclick="return confirm('Are you sure to cancel this Order ?')">Cancel Order</a></td>
+                                onclick="confirmation(event)">Cancel Order</a></td>
                         </tr>
                     @endforeach
 
@@ -76,7 +77,27 @@
               </table>
         </div>
 
+        {{-- cancel popup --}}
+        <script>
+            function confirmation(event){
+                event.preventDefault();
+                var urlToRedirect = event.currentTarget.getAttribute('href');
+                console.log(urlToRedirect);
+                swal({
+                    title: "Are you sure to cancel the order",
+                    text: "You will not be able to revers this!",
+                    icon: "warning",
+                    button: true,
+                    dangerModel: true,
+                })
+                .then((willCancel)=>{
+                    if(willCancel){
+                        window.location.href = urlToRedirect;
+                    }
+                });
 
+            }
+         </script>
 
 
       <!-- jQery -->

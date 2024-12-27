@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Category;
-use PDF;
 use Illuminate\Http\Request;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminController extends Controller
 {
@@ -20,7 +21,7 @@ class AdminController extends Controller
         else{
             return view('auth.login');
         }
-        
+
     }
 
     public function add_category(Request $request){
@@ -28,14 +29,17 @@ class AdminController extends Controller
 
         $data->category_name = $request->category;
         $data->save();
-        return redirect()->back()->with('message', 'Category Added Successfully');
+        Alert::success('Category Added Successfully');
+        return redirect()->back();
+
     }
 
     public function delete_category($id){
         $data = Category::find($id);
         $data->delete();
+        Alert::success('Category Deleted Successfully');
+        return redirect()->back();
 
-        return redirect()->back()->with('message', 'Category Deleted Successfully');
     }
 
     public function view_product(){
@@ -61,8 +65,8 @@ class AdminController extends Controller
          $product->discount_price = $request->discount_price;
 
          $product->save();
-
-         return redirect()->back()->with('message','Product Added Successfully');
+        Alert::success('Product Added Successfully');
+         return redirect()->back();
     }
 
     public function show_product(){
@@ -74,7 +78,8 @@ class AdminController extends Controller
     public function delete_product($id){
         $product = Product::find($id);
         $product->delete();
-        return redirect()->back()->with('message','Product Deleted Successfully');
+        Alert::success('Product Deleted Successfully');
+        return redirect()->back();
     }
 
     public function edit_product($id){
@@ -102,8 +107,8 @@ class AdminController extends Controller
         }
 
         $editProductConfirm->save();
-
-        return redirect()->back()->with('message','Product Updated Successfully');
+        Alert::success('Product Updated Successfully');
+        return redirect()->back();
     }
 
     public function order(){
@@ -118,7 +123,7 @@ class AdminController extends Controller
         $data->payment_status = "Paid";
 
         $data->save();
-
+        Alert::success('Status change successfully');
         return redirect()->back();
     }
 
