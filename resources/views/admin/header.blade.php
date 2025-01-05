@@ -2,21 +2,21 @@
     <!-- partial:partials/_navbar.html -->
     <nav class="flex-row p-0 navbar fixed-top d-flex">
       <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
+        <a class="navbar-brand brand-logo-mini" href="index.html"></a>
       </div>
       <div class="flex-grow navbar-menu-wrapper d-flex align-items-stretch">
         <button class="navbar-toggler align-self-center" type="button" data-toggle="minimize">
           <span class="mdi mdi-menu"></span>
         </button>
-        <ul class="navbar-nav w-100">
+        {{-- <ul class="navbar-nav w-100">
           <li class="nav-item w-100">
             <form class="mt-2 nav-link mt-md-0 d-none d-lg-flex search">
               <input type="text" class="form-control" placeholder="Search products">
             </form>
           </li>
-        </ul>
+        </ul> --}}
         <ul class="navbar-nav navbar-nav-right">
-          <li class="nav-item dropdown d-none d-lg-block">
+          {{-- <li class="nav-item dropdown d-none d-lg-block">
             <a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown" data-toggle="dropdown" aria-expanded="false" href="#">+ Create New Project</a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="createbuttonDropdown">
               <h6 class="p-3 mb-0">Projects</h6>
@@ -56,8 +56,8 @@
               <div class="dropdown-divider"></div>
               <p class="p-3 mb-0 text-center">See all projects</p>
             </div>
-          </li>
-          <li class="nav-item nav-settings d-none d-lg-block">
+          </li> --}}
+          {{-- <li class="nav-item nav-settings d-none d-lg-block">
             <a class="nav-link" href="#">
               <i class="mdi mdi-view-grid"></i>
             </a>
@@ -149,7 +149,7 @@
               <div class="dropdown-divider"></div>
               <p class="p-3 mb-0 text-center">See all notifications</p>
             </div>
-          </li>
+          </li> --}}
 
           <li>
             <x-app-layout>

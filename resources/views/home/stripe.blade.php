@@ -4,7 +4,7 @@
 
 <head>
 
-    <title>Laravel 9 - Stripe Payment Gateway Integration Example - ItSolutionStuff.com</title>
+    <title>Stripe Payment</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
 

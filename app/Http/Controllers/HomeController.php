@@ -216,7 +216,7 @@ class HomeController extends Controller
             return redirect()->back();
         }
         else{
-            Alert::success('Can not order cancel', 'Order was delivered');
+            Alert::warning('Can not order cancel', 'Order was delivered');
             return redirect()->back();
         }
     }
