@@ -42,6 +42,7 @@ class AdminController extends Controller
 
     }
 
+    //view products
     public function view_product(){
 
         $category = Category::all();
